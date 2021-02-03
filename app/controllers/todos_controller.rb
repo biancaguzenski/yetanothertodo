@@ -1,4 +1,5 @@
 class TodosController < ApplicationController
+    before_action :authenticate
     def index
         @todos = Todo.all    # to allow show all todos in list
     end
@@ -11,6 +12,7 @@ class TodosController < ApplicationController
         Todo.create(todo_params)
         redirect_to todos_path
     end
+
 
     private
 
