@@ -1,7 +1,7 @@
 class TodosController < ApplicationController
     before_action :authenticate
     def index
-        @todos = Todo.all    # to allow show all todos in list
+        @todos = Todo.all.where(email: session[:current_email])    # to allow show all todos in list
     end
 
     def new
@@ -9,7 +9,7 @@ class TodosController < ApplicationController
     end
 
     def create               # create a new todo with its params and redirect
-        Todo.create(todo_params)
+        Todo.create(todo_params.merge(email: session[:current_email]))
         redirect_to todos_path
     end
 
