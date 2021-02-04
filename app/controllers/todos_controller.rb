@@ -1,15 +1,17 @@
 class TodosController < ApplicationController
     before_action :authenticate
     def index
-        @todos = Todo.all.where(email: session[:current_email])    # to allow show all todos in list
+        # here we enable todos only for the person with authenticated email
+        @todos = Todo.where(email: current_email)
     end
 
     def new
         @todo = Todo.new     # create an instance of todo
     end
 
-    def create               # create a new todo with its params and redirect
-        Todo.create(todo_params.merge(email: session[:current_email]))
+    def create        # create a new todo with its params and redirect
+        # Merge email to params
+        Todo.create(todo_params.merge(email: current_email))
         redirect_to todos_path
     end
 
