@@ -6,6 +6,6 @@ feature "user sees owns todos" do
         
         sign_in_as "person@emailemail.com" # If signed in as other person, cant show todos from someone else
         
-        expect(page).not_to have_css ".todos li", text: "Buy milk"
+        expect(page).not_to display_todo "Buy milk"
     end
 end
