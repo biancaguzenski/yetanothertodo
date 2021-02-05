@@ -1,7 +1,7 @@
 class CompletionsController < ApplicationController
     def create
-        todo.touch :completed_at    # todo_id is given by rails
-        redirect_to todos_path                                      # touch = looks at timestamp
+        todo.complete!    # hide complete at timestamp # todo_id is given by rails
+        redirect_to todos_path      # touch = looks at timestamp
     end
 
     private
