@@ -4,6 +4,11 @@ class CompletionsController < ApplicationController
         redirect_to todos_path      # touch = looks at timestamp
     end
 
+    def destroy
+        todo.mark_incomplete!   # update_column
+        redirect_to todos_path
+    end
+
     private
 
     def todo

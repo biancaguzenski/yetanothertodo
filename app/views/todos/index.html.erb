@@ -4,7 +4,11 @@
     <% @todos.each do |todo| %>
         <li class="<%= "completed" if todo.completed? %>">  <!--- eu nem sabia que isso era possível -->
             <%= todo.title %>
-            <%= button_to "Done", todo_completion_path(todo) %>
+            <% if todo.completed? %>
+                <%= button_to "Not done", todo_completion_path(todo), method: :delete%>
+            <% else %>
+                <%= button_to "Done", todo_completion_path(todo) %>
+            <% end %>
         </li>
     <% end %>
 </ul>
